@@ -1,4 +1,4 @@
-namespace Lab11.Models
+namespace Eventos.Web.Models
 {
     public class ErrorViewModel
     {

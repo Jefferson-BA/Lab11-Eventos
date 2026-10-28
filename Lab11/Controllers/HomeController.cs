@@ -1,8 +1,8 @@
-using Lab11.Models;
+using Eventos.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Lab11.Controllers
+namespace Eventos.Web.Controllers
 {
     public class HomeController : Controller
     {

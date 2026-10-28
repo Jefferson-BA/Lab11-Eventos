@@ -1,0 +1,26 @@
+@model Evento
+@{
+    ViewData["Title"] = "Detalle del evento";
+}
+<h1>@Model.Titulo</h1>
+<dl class="row">
+    <dt class="col-sm-3">Fecha</dt><dd class="col-sm-9">@Model.Fecha.ToString("g")</dd>
+    <dt class="col-sm-3">Lugar</dt><dd class="col-sm-9">@Model.Lugar</dd>
+    <dt class="col-sm-3">Categoría</dt><dd class="col-sm-9">@Model.Categoria?.Nombre</dd>
+    <dt class="col-sm-3">Modalidad</dt><dd class="col-sm-9">@Model.Modalidad</dd>
+    <dt class="col-sm-3">Precio</dt><dd class="col-sm-9">@Model.Precio.ToString("C")</dd>
+    <dt class="col-sm-3">Aforo</dt><dd class="col-sm-9">@Model.Aforo</dd>
+    <dt class="col-sm-3">Confirmados</dt><dd class="col-sm-9">@Model.Inscripciones.Count</dd>
+</dl>
+<h2 class="h4">Asistentes confirmados</h2>
+<ul>
+@foreach (var inscripcion in Model.Inscripciones)
+{
+    <li>@inscripcion.Asistente?.Nombres</li>
+}
+</ul>
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Editar</a>
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline">
+    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('¿Desactivar este evento?')">Desactivar</button>
+</form>
+<a asp-action="Index" class="btn btn-secondary">Volver</a>
