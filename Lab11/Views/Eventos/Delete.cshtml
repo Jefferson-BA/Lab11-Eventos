@@ -1,0 +1,17 @@
+@model Evento
+@{
+    ViewData["Title"] = "Desactivar evento";
+}
+<h1>Desactivar evento</h1>
+<div class="alert alert-warning">
+    El evento se desactivará y dejará de mostrarse en los listados activos. No se eliminará físicamente.
+</div>
+<dl class="row">
+    <dt class="col-sm-3">Título</dt><dd class="col-sm-9">@Model.Titulo</dd>
+    <dt class="col-sm-3">Fecha</dt><dd class="col-sm-9">@Model.Fecha.ToString("g")</dd>
+    <dt class="col-sm-3">Categoría</dt><dd class="col-sm-9">@Model.Categoria?.Nombre</dd>
+</dl>
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <button type="submit" class="btn btn-danger">Confirmar desactivación</button>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">Cancelar</a>
+</form>

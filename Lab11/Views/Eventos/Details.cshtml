@@ -20,7 +20,5 @@
 }
 </ul>
 <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Editar</a>
-<form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline">
-    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('¿Desactivar este evento?')">Desactivar</button>
-</form>
+<a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Desactivar</a>
 <a asp-action="Index" class="btn btn-secondary">Volver</a>

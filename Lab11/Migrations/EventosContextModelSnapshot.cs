@@ -38,6 +38,9 @@ namespace Eventos.Web.Migrations
                         .HasMaxLength(254)
                         .HasColumnType("nvarchar(254)");
 
+                    b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Dni")
                         .IsRequired()
                         .HasMaxLength(8)

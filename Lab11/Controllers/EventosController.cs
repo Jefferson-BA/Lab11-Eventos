@@ -26,6 +26,12 @@ public class EventosController(EventoRepositorio repositorio) : Controller
         return View(new Evento { Fecha = DateTime.Today.AddDays(1), Modalidad = "Presencial" });
     }
 
+    public async Task<IActionResult> Delete(int id)
+    {
+        var evento = await repositorio.ObtenerPorIdAsync(id);
+        return evento is null ? NotFound() : View(evento);
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Evento evento)
@@ -80,7 +86,8 @@ public class EventosController(EventoRepositorio repositorio) : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Delete(int id)
+    [ActionName(nameof(Delete))]
+    public async Task<IActionResult> DeleteConfirmed(int id)
     {
         if (!await repositorio.EliminarAsync(id))
         {

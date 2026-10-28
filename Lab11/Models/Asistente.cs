@@ -23,6 +23,8 @@ public class Asistente
     [StringLength(9)]
     public string? Telefono { get; set; }
 
+    public string? Direccion { get; set; }
+
     public bool Activo { get; set; } = true;
 
     public ICollection<Inscripcion> Inscripciones { get; set; } = new List<Inscripcion>();
