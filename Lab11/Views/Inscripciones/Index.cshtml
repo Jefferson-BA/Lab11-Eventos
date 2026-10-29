@@ -2,31 +2,62 @@
 @{
     ViewData["Title"] = "Inscripciones";
 }
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>Inscripciones</h1>
-    <a asp-action="Create" class="btn btn-primary">Nueva inscripción</a>
+<div class="page-heading">
+    <div>
+        <div class="eyebrow">Participación</div>
+        <h1>Inscripciones</h1>
+        <p>Consulta participantes y administra las confirmaciones.</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">＋ &nbsp;Nueva inscripción</a>
 </div>
-<div class="table-responsive">
-    <table class="table table-striped align-middle">
-        <thead><tr><th>Evento</th><th>Asistente</th><th>Fecha de inscripción</th><th>Estado</th><th></th></tr></thead>
-        <tbody>
-        @foreach (var inscripcion in Model)
-        {
-            <tr>
-                <td>@inscripcion.Evento?.Titulo</td>
-                <td>@inscripcion.Asistente?.Nombres</td>
-                <td>@inscripcion.FechaInscripcion.ToString("g")</td>
-                <td>@inscripcion.Estado</td>
-                <td>
-                    @if (inscripcion.Estado == "Confirmada")
-                    {
-                        <form asp-action="Cancelar" asp-route-id="@inscripcion.Id" method="post">
-                            <button type="submit" class="btn btn-sm btn-outline-danger">Cancelar</button>
-                        </form>
-                    }
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
+@if (Model.Count == 0)
+{
+    <div class="empty-state">
+        <span class="empty-icon">I</span>
+        <h2>Sin inscripciones todavía</h2>
+        <p>Cuando registres una participación, aparecerá en este espacio.</p>
+        <a asp-action="Create" class="btn btn-primary mt-3">Registrar inscripción</a>
+    </div>
+}
+else
+{
+    <div class="table-panel">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead><tr><th>Evento</th><th>Asistente</th><th>Fecha de registro</th><th>Estado</th><th>Acciones</th></tr></thead>
+                <tbody>
+                @foreach (var inscripcion in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@inscripcion.Evento?.Titulo</td>
+                        <td>@inscripcion.Asistente?.Nombres</td>
+                        <td>@inscripcion.FechaInscripcion.ToString("g")</td>
+                        <td>
+                            @if (inscripcion.Estado == "Confirmada")
+                            {
+                                <span class="badge-gold">Confirmada</span>
+                            }
+                            else
+                            {
+                                <span class="badge-muted">Cancelada</span>
+                            }
+                        </td>
+                        <td>
+                            @if (inscripcion.Estado == "Confirmada")
+                            {
+                                <form asp-action="Cancelar" asp-route-id="@inscripcion.Id" method="post">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Cancelar</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span class="text-muted">—</span>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

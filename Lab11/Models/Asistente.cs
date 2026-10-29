@@ -27,5 +27,7 @@ public class Asistente
 
     public bool Activo { get; set; } = true;
 
+    public DateTime? FechaRegistro { get; set; } = DateTime.Now;
+
     public ICollection<Inscripcion> Inscripciones { get; set; } = new List<Inscripcion>();
 }

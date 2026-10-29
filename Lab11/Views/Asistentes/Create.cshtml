@@ -2,32 +2,42 @@
 @{
     ViewData["Title"] = "Nuevo asistente";
 }
-<h1>Nuevo asistente</h1>
-<form asp-action="Create" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="mb-3">
-        <label asp-for="Nombres" class="form-label"></label>
-        <input asp-for="Nombres" class="form-control" />
-        <span asp-validation-for="Nombres" class="text-danger"></span>
+<div class="page-heading">
+    <div>
+        <div class="eyebrow">Directorio</div>
+        <h1>Registrar asistente</h1>
+        <p>Agrega los datos de contacto para habilitar sus inscripciones.</p>
     </div>
-    <div class="mb-3">
-        <label asp-for="Dni" class="form-label"></label>
-        <input asp-for="Dni" class="form-control" />
-        <span asp-validation-for="Dni" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Correo" class="form-label"></label>
-        <input asp-for="Correo" class="form-control" />
-        <span asp-validation-for="Correo" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Telefono" class="form-label"></label>
-        <input asp-for="Telefono" class="form-control" />
-        <span asp-validation-for="Telefono" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-</form>
+</div>
+<section class="form-panel">
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-4">
+            <label asp-for="Nombres" class="form-label"></label>
+            <input asp-for="Nombres" class="form-control" placeholder="Nombre y apellidos" />
+            <span asp-validation-for="Nombres" class="text-danger"></span>
+        </div>
+        <div class="mb-4">
+            <label asp-for="Dni" class="form-label"></label>
+            <input asp-for="Dni" class="form-control" inputmode="numeric" placeholder="8 dígitos" />
+            <span asp-validation-for="Dni" class="text-danger"></span>
+        </div>
+        <div class="mb-4">
+            <label asp-for="Correo" class="form-label"></label>
+            <input asp-for="Correo" class="form-control" placeholder="nombre@correo.com" />
+            <span asp-validation-for="Correo" class="text-danger"></span>
+        </div>
+        <div class="mb-4">
+            <label asp-for="Telefono" class="form-label"></label>
+            <input asp-for="Telefono" class="form-control" inputmode="tel" placeholder="Opcional" />
+            <span asp-validation-for="Telefono" class="text-danger"></span>
+        </div>
+        <div class="d-flex flex-wrap gap-2 mt-4">
+            <button type="submit" class="btn btn-primary">Guardar asistente</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+        </div>
+    </form>
+</section>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

@@ -1,8 +1,37 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="hero-panel mb-4">
+    <div class="eyebrow">Eventos · Personas · Experiencias</div>
+    <h1 class="display-title">Cada encuentro<br />merece una gran historia.</h1>
+    <div class="gold-rule"></div>
+    <p>Administra eventos, acompaña a tus asistentes y organiza inscripciones desde un solo lugar.</p>
+    <a asp-controller="Eventos" asp-action="Index" class="btn btn-primary mt-2">Explorar eventos</a>
+</section>
+<div class="row g-3">
+    <div class="col-md-4">
+        <article class="feature-card">
+            <span class="badge-gold">01 · Agenda</span>
+            <h2>Eventos con intención</h2>
+            <p>Consulta fechas, modalidad, categoría y disponibilidad.</p>
+            <a asp-controller="Eventos" asp-action="Index">Ver agenda →</a>
+        </article>
+    </div>
+    <div class="col-md-4">
+        <article class="feature-card">
+            <span class="badge-gold">02 · Comunidad</span>
+            <h2>Personas primero</h2>
+            <p>Mantén los datos de asistentes en un directorio ordenado.</p>
+            <a asp-controller="Asistentes" asp-action="Index">Ver asistentes →</a>
+        </article>
+    </div>
+    <div class="col-md-4">
+        <article class="feature-card">
+            <span class="badge-gold">03 · Participación</span>
+            <h2>Inscripciones claras</h2>
+            <p>Controla confirmaciones, cancelaciones y cupos disponibles.</p>
+            <a asp-controller="Inscripciones" asp-action="Index">Ver inscripciones →</a>
+        </article>
+    </div>
 </div>

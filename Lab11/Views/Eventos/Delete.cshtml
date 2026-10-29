@@ -2,16 +2,24 @@
 @{
     ViewData["Title"] = "Desactivar evento";
 }
-<h1>Desactivar evento</h1>
-<div class="alert alert-warning">
-    El evento se desactivará y dejará de mostrarse en los listados activos. No se eliminará físicamente.
+<div class="page-heading">
+    <div>
+        <div class="eyebrow">Acción administrativa</div>
+        <h1>Desactivar evento</h1>
+        <p>Confirma que deseas retirar este evento de la agenda activa.</p>
+    </div>
 </div>
-<dl class="row">
-    <dt class="col-sm-3">Título</dt><dd class="col-sm-9">@Model.Titulo</dd>
-    <dt class="col-sm-3">Fecha</dt><dd class="col-sm-9">@Model.Fecha.ToString("g")</dd>
-    <dt class="col-sm-3">Categoría</dt><dd class="col-sm-9">@Model.Categoria?.Nombre</dd>
-</dl>
-<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
-    <button type="submit" class="btn btn-danger">Confirmar desactivación</button>
-    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">Cancelar</a>
-</form>
+<section class="form-panel">
+    <div class="alert alert-warning">
+        El registro y sus inscripciones se conservarán. Esta acción solo marcará el evento como inactivo.
+    </div>
+    <div class="detail-grid">
+        <div class="detail-item"><dt>Evento</dt><dd>@Model.Titulo</dd></div>
+        <div class="detail-item"><dt>Fecha</dt><dd>@Model.Fecha.ToString("g")</dd></div>
+        <div class="detail-item"><dt>Categoría</dt><dd>@Model.Categoria?.Nombre</dd></div>
+    </div>
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-flex flex-wrap gap-2 mt-4">
+        <button type="submit" class="btn btn-outline-danger">Confirmar desactivación</button>
+        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Conservar evento</a>
+    </form>
+</section>

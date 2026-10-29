@@ -46,6 +46,9 @@ namespace Eventos.Web.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
 
+                    b.Property<DateTime?>("FechaRegistro")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Nombres")
                         .IsRequired()
                         .HasMaxLength(100)

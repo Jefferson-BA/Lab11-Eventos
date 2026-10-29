@@ -2,23 +2,41 @@
 @{
     ViewData["Title"] = "Detalle del evento";
 }
-<h1>@Model.Titulo</h1>
-<dl class="row">
-    <dt class="col-sm-3">Fecha</dt><dd class="col-sm-9">@Model.Fecha.ToString("g")</dd>
-    <dt class="col-sm-3">Lugar</dt><dd class="col-sm-9">@Model.Lugar</dd>
-    <dt class="col-sm-3">Categoría</dt><dd class="col-sm-9">@Model.Categoria?.Nombre</dd>
-    <dt class="col-sm-3">Modalidad</dt><dd class="col-sm-9">@Model.Modalidad</dd>
-    <dt class="col-sm-3">Precio</dt><dd class="col-sm-9">@Model.Precio.ToString("C")</dd>
-    <dt class="col-sm-3">Aforo</dt><dd class="col-sm-9">@Model.Aforo</dd>
-    <dt class="col-sm-3">Confirmados</dt><dd class="col-sm-9">@Model.Inscripciones.Count</dd>
-</dl>
-<h2 class="h4">Asistentes confirmados</h2>
-<ul>
-@foreach (var inscripcion in Model.Inscripciones)
-{
-    <li>@inscripcion.Asistente?.Nombres</li>
-}
-</ul>
-<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Editar</a>
-<a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Desactivar</a>
-<a asp-action="Index" class="btn btn-secondary">Volver</a>
+<div class="page-heading">
+    <div>
+        <div class="eyebrow">Detalle del evento</div>
+        <h1>@Model.Titulo</h1>
+        <p>Información y asistentes con inscripción confirmada.</p>
+    </div>
+    <span class="badge-gold">@Model.Modalidad</span>
+</div>
+<section class="detail-panel">
+    <div class="detail-grid">
+        <div class="detail-item"><dt>Fecha y hora</dt><dd>@Model.Fecha.ToString("g")</dd></div>
+        <div class="detail-item"><dt>Lugar</dt><dd>@Model.Lugar</dd></div>
+        <div class="detail-item"><dt>Categoría</dt><dd>@Model.Categoria?.Nombre</dd></div>
+        <div class="detail-item"><dt>Precio</dt><dd>@Model.Precio.ToString("C")</dd></div>
+        <div class="detail-item"><dt>Aforo total</dt><dd>@Model.Aforo</dd></div>
+        <div class="detail-item"><dt>Inscritos confirmados</dt><dd>@Model.Inscripciones.Count</dd></div>
+    </div>
+    <div class="gold-rule"></div>
+    <h2 class="mb-3">Asistentes confirmados</h2>
+    @if (Model.Inscripciones.Count == 0)
+    {
+        <p class="muted-copy">Todavía no hay inscripciones confirmadas para este evento.</p>
+    }
+    else
+    {
+        <div class="d-flex flex-wrap gap-2 mb-4">
+        @foreach (var inscripcion in Model.Inscripciones)
+        {
+            <span class="badge-muted">@inscripcion.Asistente?.Nombres</span>
+        }
+        </div>
+    }
+    <div class="d-flex flex-wrap gap-2 mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar evento</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Desactivar</a>
+        <a asp-action="Index" class="btn btn-outline-secondary">Volver a eventos</a>
+    </div>
+</section>

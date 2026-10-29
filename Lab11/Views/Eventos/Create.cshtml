@@ -2,12 +2,22 @@
 @{
     ViewData["Title"] = "Nuevo evento";
 }
-<h1>Nuevo evento</h1>
-<form asp-action="Create" method="post">
-    <partial name="_Formulario" model="Model" />
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-</form>
+<div class="page-heading">
+    <div>
+        <div class="eyebrow">Agenda</div>
+        <h1>Crear evento</h1>
+        <p>Completa la información para publicar una nueva experiencia.</p>
+    </div>
+</div>
+<section class="form-panel">
+    <form asp-action="Create" method="post">
+        <partial name="_Formulario" model="Model" />
+        <div class="d-flex flex-wrap gap-2 mt-4">
+            <button type="submit" class="btn btn-primary">Guardar evento</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+        </div>
+    </form>
+</section>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

@@ -3,22 +3,26 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#11110f" />
     <title>@ViewData["Title"] - Eventos.Web</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Eventos.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" asp-controller="Eventos" asp-action="Index">Eventos.Web</a>
+                <a class="navbar-brand" asp-controller="Eventos" asp-action="Index">
+                    <span class="brand-mark">E</span>
+                    <span class="brand-copy">Eventos.Web<small>Experiencias memorables</small></span>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
                         aria-controls="mainNavbar" aria-expanded="false" aria-label="Mostrar navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="mainNavbar">
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" asp-controller="Eventos" asp-action="Index">Eventos</a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Asistentes" asp-action="Index">Asistentes</a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Inscripciones" asp-action="Index">Inscripciones</a></li>
@@ -27,18 +31,24 @@
             </div>
         </nav>
     </header>
-    <div class="container pb-4">
-        <main role="main">
+    <main role="main" class="site-main">
+        <div class="container">
             @if (TempData["Mensaje"] is string mensaje)
             {
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    @mensaje
+                <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                    <strong>Listo.</strong> @mensaje
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                 </div>
             }
             @RenderBody()
-        </main>
-    </div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container d-flex flex-wrap justify-content-between gap-2">
+            <span>Eventos.Web <span class="text-warning">·</span> Gestión de eventos e inscripciones</span>
+            <span>Desarrollo de Aplicaciones Empresariales</span>
+        </div>
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
